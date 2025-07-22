@@ -2,8 +2,8 @@ use std::fmt::Debug;
 
 use serde::{Deserialize, Serialize};
 
-pub const CHALLENGE_LEAGUE: &str = "Settlers";
-pub const CHALLENGE_LEAGUE_HC: &str = "Hardcore Settlers";
+pub const CHALLENGE_LEAGUE: &str = "Mercenaries";
+pub const CHALLENGE_LEAGUE_HC: &str = "Hardcore Mercenaries";
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash, Serialize, Deserialize)]
 /// A newtype struct that represents a League in the Path of Exile API data.

@@ -1,5 +1,5 @@
 use async_trait::async_trait;
-use chrono::DateTime;
+use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use sqlx::{postgres::PgPoolOptions, Execute, Pool, Postgres, QueryBuilder};
 use stash_api::common::stash::Stash;
@@ -29,6 +29,7 @@ impl PostgresSink {
 
         // Migrate after connecting
         sqlx::migrate!("./migrations").run(&pool).await?;
+
 
         Ok(Self { pool, asset_index })
     }
@@ -119,7 +120,7 @@ impl PostgresSink {
             query.push_bind(asset_index.get_name(&o.sell).unwrap_or(&o.sell).clone());
             query.push_bind(asset_index.get_name(&o.buy).unwrap_or(&o.buy).clone());
             query.push_bind(o.conversion_rate);
-            query.push_bind(DateTime::from_timestamp_millis(o.created_at as i64));
+            query.push_bind(DateTime::<Utc>::from_timestamp_millis(o.created_at as i64));
         });
 
         let ingest_query = query_builder.build();

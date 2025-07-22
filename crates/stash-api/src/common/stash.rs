@@ -37,7 +37,7 @@ pub mod protocol {
         pub type_line: String,
         #[serde(rename(deserialize = "stackSize"))]
         pub stack_size: Option<u32>,
-        pub extended: ItemExtendedProp,
+        // pub extended: ItemExtendedProp,
     }
 
     #[derive(Debug, Deserialize, Serialize, Clone, PartialEq, Eq)]
